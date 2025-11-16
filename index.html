@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>WonderlearnXR | Gamified Coding</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.cdnfonts.com/css/pixel-sans-serif" rel="stylesheet">
+
+  <style>
+    body {
+      font-family: 'Pixel Sans Serif', sans-serif;
+      background: #020617;
+      color: #e5e7eb;
+      overflow-x: hidden;
+    }
+
+    /* NAVBAR */
+    header {
+      background: rgba(10, 10, 10, 0.9);
+      border-bottom: 1px solid rgba(168, 85, 247, 0.3);
+      backdrop-filter: blur(10px);
+    }
+
+    .neon-text {
+      color: #c084fc;
+      text-shadow: 0 0 10px #a855f7, 0 0 20px #9333ea;
+    }
+
+    /* HERO SECTION */
+    .hero-section {
+      background: radial-gradient(circle at center, #0f172a 0%, #020617 80%);
+      position: relative;
+      overflow: hidden;
+      text-align: center;
+      padding: 6rem 1rem 8rem;
+    }
+
+    .hero-title {
+      font-size: 3.5rem;
+      font-weight: 900;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: #f3f4f6;
+      line-height: 1.2;
+    }
+
+    .hero-highlight {
+      color: #c800ff;
+      text-shadow:
+        0 0 8px #c800ff,
+        0 0 16px #c800ff,
+        0 0 32px #c800ff,
+        0 0 64px #8b00ff;
+      animation: neonPulse 3s infinite alternate ease-in-out;
+    }
+
+    /* Flicker + pulse animation for neon effect */
+    @keyframes neonPulse {
+      0%, 100% {
+        opacity: 1;
+        text-shadow:
+          0 0 5px #c800ff,
+          0 0 15px #c800ff,
+          0 0 25px #8b00ff,
+          0 0 45px #8b00ff;
+        transform: scale(1);
+      }
+      50% {
+        opacity: 0.9;
+        text-shadow:
+          0 0 15px #c800ff,
+          0 0 35px #c800ff,
+          0 0 65px #ff00ff,
+          0 0 90px #ff00ff;
+        transform: scale(1.03);
+      }
+      70% { opacity: 0.7; }
+      72% { opacity: 1; }
+      74% { opacity: 0.8; }
+      76% { opacity: 1; }
+    }
+
+    /* BUTTONS */
+    .btn-primary {
+      background: #c084fc;
+      color: #000;
+      font-weight: bold;
+      border-radius: 9999px;
+      padding: 0.9rem 2.5rem;
+      transition: all 0.3s ease;
+      box-shadow: 0 0 10px #a855f7, 0 0 30px #9333ea;
+    }
+
+    .btn-primary:hover {
+      background: #9333ea;
+      color: #fff;
+      transform: scale(1.08);
+      box-shadow: 0 0 20px #c084fc, 0 0 40px #9333ea;
+    }
+
+    /* FEATURES */
+    .feature-card {
+      background: rgba(10, 10, 10, 0.6);
+      border: 1px solid rgba(192, 132, 252, 0.3);
+      border-radius: 10px;
+      transition: 0.3s;
+      padding: 1.5rem;
+    }
+
+    .feature-card:hover {
+      border-color: #c084fc;
+      box-shadow: 0 0 20px rgba(192, 132, 252, 0.4);
+    }
+
+    /* CHARACTERS */
+    .character {
+      position: absolute;
+      top: 18%;
+      width: 140px; /* reduced desktop size */
+      max-width: 18vw;
+      height: auto;
+      opacity: 0.9;
+      object-fit: contain;
+      z-index: 20;
+      animation: floatAnimation 6s ease-in-out infinite; /* floating animation */
+      transition: transform 0.25s ease;
+      filter: drop-shadow(0 8px 30px rgba(192,132,252,0.25));
+    }
+
+.character.left {
+  left: 4%; /* slightly inset from the edge */
+  transform: scaleX(-1) translateY(0);
+}
+
+.character.right {
+  right: 4%; /* slightly inset from the edge */
+}
+
+    /* Responsive adjustments for characters */
+    @media (max-width: 1024px) {
+      .character { width: 120px; max-width: 22vw; top: 16%; }
+      .character.left { left: 3%; }
+      .character.right { right: 3%; }
+    }
+
+    @media (max-width: 640px) {
+      .character { width: 80px; max-width: 30vw; top: 8%; opacity: 0.85; }
+      .character.left { left: 2%; }
+      .character.right { right: 2%; }
+      .hero-section { padding: 4rem 1rem 6rem; }
+      .hero-title { font-size: 2.2rem; }
+    }
+
+    /* FOOTER */
+    footer {
+      text-align: center;
+      color: #9ca3af;
+      padding: 2rem;
+      background: #0a0a0a;
+      border-top: 1px solid rgba(192, 132, 252, 0.2);
+    }
+  </style>
+</head>
+
+<body>
+  <!-- 🌐 Navbar -->
+  <header class="flex justify-between items-center px-8 py-4 sticky top-0 z-50">
+    <h1 class="text-2xl font-bold neon-text">🌀 WonderlearnXR</h1>
+    <nav class="hidden md:flex space-x-8 text-gray-300 uppercase text-sm font-medium">
+      <a href="#" class="hover:text-purple-400">Home</a>
+      <a href="dashboard.html" class="hover:text-purple-400">Dashboard</a>
+      <a href="about.html" class="hover:text-purple-400">About</a>
+    </nav>
+    <div class="flex space-x-4">
+  <a href="/login.html" class="px-4 py-2 bg-purple-500 hover:bg-purple-600 rounded-full font-bold text-black">Login</a>
+  <a href="/signup.html" class="px-4 py-2 border border-purple-500 text-purple-400 hover:bg-purple-400 hover:text-black rounded-full font-bold">Sign Up</a>
+    </div>
+  </header>
+
+  <!-- ⚡ Hero Section -->
+  <section class="hero-section relative">
+    <!-- Character Images -->
+    <img src="character1.jpg" alt="Character Left" class="character left">
+    <img src="character2.png" alt="Character Right" class="character right">
+
+    <div class="relative z-10 max-w-3xl mx-auto">
+      <!-- Main Title -->
+      <h2 class="hero-title">
+        <span class="block">LEARN CODE</span>
+        <span class="block hero-highlight mt-2">WIN REWARDS</span>
+      </h2>
+
+      <!-- Subtitle -->
+      <p class="mt-6 text-gray-400 text-lg md:text-xl tracking-wide">
+        Step into the immersive world of coding — powered by AR, VR, and AI.
+      </p>
+
+      <!-- CTA -->
+      <div class="mt-10">
+        <a href="signup.html" class="btn-primary inline-block text-lg">Start Your Journey</a>
+      </div>
+    </div>
+
+    <!-- Features -->
+    <div class="mt-24 grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-5xl mx-auto relative z-10">
+      <div class="feature-card">
+        <h3 class="text-purple-400 text-lg font-bold mb-2">⚡ Gamified Challenges</h3>
+        <p class="text-gray-400 text-sm">Earn XP, badges, and rewards as you code and progress through AR-based missions.</p>
+      </div>
+      <div class="feature-card">
+        <h3 class="text-purple-400 text-lg font-bold mb-2">🧠 AI-Powered Mentor</h3>
+        <p class="text-gray-400 text-sm">Our AI identifies weak areas and adapts your learning path in real-time.</p>
+      </div>
+      <div class="feature-card">
+        <h3 class="text-purple-400 text-lg font-bold mb-2">🌍 Immersive XR Learning</h3>
+        <p class="text-gray-400 text-sm">Experience code like never before — visualize algorithms in 3D environments.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 💻 Code Bytes -->
+  <section class="bg-black bg-opacity-70 p-6 mt-16">
+    <div class="container mx-auto flex flex-col md:flex-row items-center space-y-4 md:space-y-0 md:space-x-4">
+      <div class="bg-purple-500 text-black font-bold px-4 py-2 rounded-md text-sm whitespace-nowrap">
+        💻 Code Bytes
+      </div>
+
+      <div class="flex-grow grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
+        <div class="feature-card p-3">
+          <p id="fact-1">Loading fact...</p>
+        </div>
+        <div class="feature-card p-3">
+          <p id="fact-2">Loading fact...</p>
+        </div>
+        <div class="feature-card p-3">
+          <p id="fact-3">Loading fact...</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    © 2025 WonderlearnXR | Gamified Coding Adventure
+  </footer>
+
+  <!-- Script for Code Facts -->
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const facts = [
+        "The first programmer was Ada Lovelace — in the 1840s.",
+        "Python was named after 'Monty Python', not the snake!",
+        "The first computer bug was a real moth — in 1947!",
+        "JavaScript was written in just 10 days.",
+        "There are over 700 coding languages.",
+        "‘import this’ in Python prints ‘The Zen of Python’.",
+      ];
+
+      const shuffle = (array) => array.sort(() => 0.5 - Math.random());
+      const randomFacts = shuffle(facts).slice(0, 3);
+
+      document.getElementById("fact-1").innerText = "🔥 " + randomFacts[0];
+      document.getElementById("fact-2").innerText = "💡 " + randomFacts[1];
+      document.getElementById("fact-3").innerText = "🚀 " + randomFacts[2];
+    });
+  </script>
+</body>
+</html>
+ 
+
